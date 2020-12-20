@@ -1,10 +1,10 @@
 # TailBlazor.Toast
 
-Blazor toast notifications shell using TailBlazorcss v2.0+
+Blazor toast notifications shell using Tailwindcss v2.0+
 
 Thank you to Chris Sanity for the base functionality through Blazored.Toasts.
 
-This version uses TailBlazorcss instead of bootstrap. There is also no core notifications in this package. With TailBlazor being so incredibly low level it didn't make sense to premake notifications.
+This version uses Tailwindcss instead of bootstrap. There is also no core notifications in this package. With TailBlazor being so incredibly low level it didn't make sense to premake notifications.
 
 Instead you pass it a component through a renderfragment giving you unlimited customization and the ability to have highly interactive notifications.
 
@@ -36,7 +36,10 @@ Add to Startup.ConfigureServices method in Startup.cs
 
 Add lines to your \_Imports.razor
 
-`@using TailBlazor.Toast.Services @using TailBlazor.Toast`
+```
+@using TailBlazor.Toast.Services 
+@using TailBlazor.Toast
+```
 
 ### 3. Register and Configure Toasts Component
 
@@ -46,7 +49,7 @@ Add this to the top of your MainLayout.razor component.
 
 #### 4. Create your toast component
 
-Because there are no default styles, you'll need to create the template that you'll use for some or all of your toasts using TailBlazor.
+Because there are no default styles, you'll need to create the template that you'll use for some or all of your toasts using tailwind.
 
 Here is a basic example. Create a folder named `Toasts` and create a component called `SimpleToast.razor` and add the following code.
 
