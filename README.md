@@ -1,16 +1,14 @@
 # TailBlazor.Toast
 
-Blazor toast notifications shell using tailwindcss v2.0+
-
-
+Blazor toast notifications shell using TailBlazorcss v2.0+
 
 Thank you to Chris Sanity for the base functionality through Blazored.Toasts.
 
-This version uses Tailwindcss instead of bootstrap. There is also no core notifications in this package. With tailwind being so incredibly low level it didn't make sense to premake notifications.
+This version uses TailBlazorcss instead of bootstrap. There is also no core notifications in this package. With TailBlazor being so incredibly low level it didn't make sense to premake notifications.
 
 Instead you pass it a component through a renderfragment giving you unlimited customization and the ability to have highly interactive notifications.
 
-![Nuget](https://img.shields.io/nuget/v/tailwind.toast.svg)
+![Nuget](https://img.shields.io/nuget/v/TailBlazor.Toast.svg)
 
 ![Demo](screenshot.png)
 
@@ -18,11 +16,11 @@ Instead you pass it a component through a renderfragment giving you unlimited cu
 
 You can install the package via the NuGet package manager just search for Blazored.Toast. You can also install via powershell using the following command.
 
-`Install-Package Tailwind.Toast`
+`Install-Package TailBlazor.Toast`
 
 Or via the dotnet CLI.
 
-`dotnet add package Tailwind.Toast`
+`dotnet add package TailBlazor.Toast`
 
 ### 1. Register Services
 
@@ -32,24 +30,23 @@ Blazor Server
 
 Add to Startup.ConfigureServices method in Startup.cs
 
-`services.AddTailwindToast();`
+`services.AddTailBlazorToast();`
 
 ### 2. Add Imports
 
-Add lines to your _Imports.razor
+Add lines to your \_Imports.razor
 
-`@using Tailwind.Toast.Services
-@using Tailwind.Toast`
+`@using TailBlazor.Toast.Services @using TailBlazor.Toast`
 
 ### 3. Register and Configure Toasts Component
 
 Add this to the top of your MainLayout.razor component.
 
-`<TailwindToasts />`
+`<TailBlazorToasts />`
 
 #### 4. Create your toast component
 
-Because there are no default styles, you'll need to create the template that you'll use for some or all of your toasts using tailwind.
+Because there are no default styles, you'll need to create the template that you'll use for some or all of your toasts using TailBlazor.
 
 Here is a basic example. Create a folder named `Toasts` and create a component called `SimpleToast.razor` and add the following code.
 
