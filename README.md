@@ -1,4 +1,4 @@
-# Tailwind.Toast
+# TailBlazor.Toast
 
 Blazor toast notifications shell using tailwindcss v2.0+
 
