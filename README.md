@@ -14,7 +14,7 @@ Instead you pass it a component through a renderfragment giving you unlimited cu
 
 ## Getting Setup
 
-You can install the package via the NuGet package manager just search for Blazored.Toast. You can also install via powershell using the following command.
+You can install the package via the NuGet package manager just search for TailBlazor.Toast. You can also install via powershell using the following command.
 
 `Install-Package TailBlazor.Toast`
 
