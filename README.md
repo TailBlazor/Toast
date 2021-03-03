@@ -2,11 +2,11 @@
 
 Blazor toast notifications shell using Tailwindcss v2.0+
 
-Thank you to Chris Sanity for the base functionality through Blazored.Toasts.
+Thank you to Chris Sanity for the base functionality through Blazored.Toasts. This is basically a fork of his work.
 
-This version uses Tailwindcss instead of bootstrap. There is also no core notifications in this package. With TailBlazor being so incredibly low level it didn't make sense to premake notifications.
+This version uses Tailwindcss instead of bootstrap. There are a few base styles included, however, With TailBlazor being so incredibly low level there is the option to load entire render fragments in instead to give unlimited customization to toasts
 
-Instead you pass it a component through a renderfragment giving you unlimited customization and the ability to have highly interactive notifications.
+You can pass it a component through a renderfragment giving you unlimited customization and the ability to have highly interactive notifications.
 
 ![Nuget](https://img.shields.io/nuget/v/TailBlazor.Toast.svg)
 
@@ -15,12 +15,15 @@ Instead you pass it a component through a renderfragment giving you unlimited cu
 ## Getting Setup
 
 You can install the package via the NuGet package manager just search for TailBlazor.Toast. You can also install via powershell using the following command.
+This package now requires TailBlazor.HeroIcons
 
 `Install-Package TailBlazor.Toast`
+`Install-Package TailBlazor.HeroIcons`
 
 Or via the dotnet CLI.
 
 `dotnet add package TailBlazor.Toast`
+`dotnet add package TailBlazor.HeroIcons`
 
 ### 1. Register Services
 
@@ -47,9 +50,36 @@ Add this to the top of your MainLayout.razor component.
 
 `<TailBlazorToasts />`
 
-#### 4. Create your toast component
+### 4. Using basic components
 
-Because there are no default styles, you'll need to create the template that you'll use for some or all of your toasts using tailwind.
+Edit the TailBlazorToasts component in mainlayout with your base settings
+
+```
+<TailBlazorToasts 
+    Timeout="10" 
+    Position="ToastPosition.TopRight"
+    IconStyle="HeroIcons.IconStyle.Outline"
+    SuccessIcon="HeroIcon.Check"  />
+```
+
+
+```
+<button type="button" @onclick="@(() => toastService.ShowSuccess("Success","I'm a heading"))"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    Show Success Toast
+</button>
+
+<button type="button" @onclick="@(() => toastService.ShowError("Uh Oh","I'm a heading"))"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    Show Error Toast
+</button>
+
+```
+
+
+#### 5. Create your custom toast component
+
+You can create the template that you'll use for some or all of your toasts using tailwind.
 
 Here is a basic example. Create a folder named `Toasts` and create a component called `SimpleToast.razor` and add the following code.
 

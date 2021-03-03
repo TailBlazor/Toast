@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Components;
+using TailBlazor.Toast.Configuration;
 
 namespace TailBlazor.Toast
 {
@@ -8,7 +9,7 @@ namespace TailBlazor.Toast
         [CascadingParameter] private TailBlazorToasts ToastsContainer { get; set; }
 
         [Parameter] public Guid ToastId { get; set; }
-        [Parameter] public RenderFragment Toast { get; set; }
+        [Parameter] public ToastSettings ToastSettings { get; set; }
         [Parameter] public int Timeout { get; set; }
 
         private CountdownTimer _countdownTimer;
@@ -23,6 +24,11 @@ namespace TailBlazor.Toast
         private void Close()
         {
             ToastsContainer.RemoveToast(ToastId);
+        }
+
+        private void ToastClick()
+        {
+            ToastSettings.OnClick?.Invoke();
         }
 
         public void Dispose()

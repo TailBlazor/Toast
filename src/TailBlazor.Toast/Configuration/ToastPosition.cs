@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Components;
-
-namespace TailBlazor.Toast
+﻿namespace TailBlazor.Toast.Configuration
 {
     public enum ToastPosition
     {

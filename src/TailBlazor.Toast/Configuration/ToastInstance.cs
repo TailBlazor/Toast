@@ -7,6 +7,6 @@ namespace TailBlazor.Toast.Configuration
     {
         public Guid Id { get; set; }
         public DateTime TimeStamp { get; set; }
-        public RenderFragment Toast { get; set; }
+        public ToastSettings ToastSettings { get; set; }
     }
 }

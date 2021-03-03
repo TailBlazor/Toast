@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.809.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TailBlazor.ToastServer", "TailBlazor.ToastServer.csproj", "{71B4912C-9431-40F0-837D-D2A9BD02B973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TailBlazor.Toast", "..\..\src\TailBlazor.Toast\TailBlazor.Toast.csproj", "{5ED26509-C3EF-4BBA-9844-482E136312E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71B4912C-9431-40F0-837D-D2A9BD02B973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B4912C-9431-40F0-837D-D2A9BD02B973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B4912C-9431-40F0-837D-D2A9BD02B973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B4912C-9431-40F0-837D-D2A9BD02B973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED26509-C3EF-4BBA-9844-482E136312E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED26509-C3EF-4BBA-9844-482E136312E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED26509-C3EF-4BBA-9844-482E136312E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED26509-C3EF-4BBA-9844-482E136312E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9F85997-D74D-4608-BC85-36FC286A50B2}
+	EndGlobalSection
+EndGlobal

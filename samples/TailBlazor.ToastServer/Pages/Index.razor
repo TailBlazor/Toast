@@ -2,26 +2,42 @@
 @inject IToastService toastService
 
 
-<button type="button" @onclick="@ShowSuccess"
-    class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+<button type="button" @onclick="@(() => toastService.ShowError("I'm a messgae","I'm a heading"))"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
     Show Success Toast
 </button>
 
-<button type="button" @onclick="@ShowError"
-    class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+<button type="button" @onclick="@(() => toastService.ShowInfo("I'm a messgae","I'm a heading"))"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
     Show Error Toast
 </button>
 
+<button type="button" @onclick="@ShowReply"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    Show Reply Toast
+</button>
+
+
+<button type="button" @onclick="@(() => toastService.ShowSuccess("I'm a messgae","I'm a heading"))"
+        class="inline-flex items-center px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    Show Reply Toast
+</button>
+
 @code
+{private void ShowSuccess()
+            {
+                RenderFragment toast =@<SimpleToast Header="Success!!!" Message="you read this toast all by yourself." />;
+toastService.ShowToast(toast);
+}
+private void ShowError()
 {
-    private void ShowSuccess()
-    {
-        RenderFragment toast = @<SimpleToast Header="Success!!!" Message="you read this toast all by yourself." />;
-        toastService.ShowToast(toast);
-    }
-    private void ShowError()
-    {
-        RenderFragment toast = @<SimpleToast ToastColour="red-800" Header="Oops!!!" Message="Something terrible happened." />;
-        toastService.ShowToast(toast);
-    }
+RenderFragment toast = @<SimpleToast ToastColour="red-800" Header="Oops!!!" Message="Something terrible happened." />;
+toastService.ShowToast(toast);
+}
+
+private void ShowReply()
+{
+RenderFragment toast = @<ReplyToast />;
+toastService.ShowToast(toast);
+}
 }
