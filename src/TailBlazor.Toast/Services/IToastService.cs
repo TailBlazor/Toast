@@ -1,10 +1,16 @@
 using System;
 using Microsoft.AspNetCore.Components;
+using TailBlazor.Toast.Configuration;
 
 namespace TailBlazor.Toast.Services
 {
     public interface IToastService
     {
+
+        /// <summary>
+        /// Toast configuration options
+        /// </summary>
+        public ToastOptions _options { get;  }
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>

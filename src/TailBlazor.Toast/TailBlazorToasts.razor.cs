@@ -29,11 +29,11 @@ namespace TailBlazor.Toast
 
         protected string PositionClass { get; set; } = "items-start justify-end";
         internal List<ToastInstance> ToastList { get; set; } = new List<ToastInstance>();
-
+         ToastOptions Options { get; set; }
         protected override void OnInitialized()
         {
             ToastService.OnShow += ShowToast;
-
+            Options = ToastService._options;
             if (RemoveToastsOnNavigation)
             {
                 NavigationManager.LocationChanged += ClearToasts;
@@ -86,22 +86,22 @@ namespace TailBlazor.Toast
             switch (level)
             {
                 case ToastLevel.Custom:
-                    return new ToastSettings(message, level);
+                    return new ToastSettings(message, level, Options.IncludeIcons);
                 case ToastLevel.Error:
                     return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Error" : heading, message,
-                        IconStyle, ErrorClass, ErrorIcon, ShowProgressBar, onclick, level);
+                        IconStyle, ErrorClass, ErrorIcon, ShowProgressBar, onclick, level,Options.IncludeIcons);
 
                 case ToastLevel.Info:
                     return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Info" : heading, message,
-                        IconStyle, InfoClass, InfoIcon, ShowProgressBar, onclick, level);
+                        IconStyle, InfoClass, InfoIcon, ShowProgressBar, onclick, level, Options.IncludeIcons);
 
                 case ToastLevel.Success:
                     return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Success" : heading, message,
-                        IconStyle, SuccessClass, SuccessIcon, ShowProgressBar, onclick, level);
+                        IconStyle, SuccessClass, SuccessIcon, ShowProgressBar, onclick, level, Options.IncludeIcons);
 
                 case ToastLevel.Warning:
                     return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Warning" : heading, message,
-                        IconStyle, WarningClass, WarningIcon, ShowProgressBar, onclick, level);
+                        IconStyle, WarningClass, WarningIcon, ShowProgressBar, onclick, level, Options.IncludeIcons);
             }
 
             throw new InvalidOperationException();

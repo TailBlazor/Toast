@@ -6,10 +6,11 @@ namespace TailBlazor.Toast.Configuration
 {
     public class ToastSettings
     {
-        public ToastSettings(RenderFragment toast, ToastLevel level)
+        public ToastSettings(RenderFragment toast, ToastLevel level, bool includeIcons)
         {
             Message = toast;
             Level = level;
+            IncludeIcons= includeIcons;
         }
 
         public ToastSettings(
@@ -19,7 +20,8 @@ namespace TailBlazor.Toast.Configuration
             string Class,
             HeroIcons.HeroIcon? icon,
             bool showProgressBar,
-            Action? onClick, ToastLevel level)
+            Action? onClick, ToastLevel level,
+            bool includeIcons)
         {
             Heading = heading;
             Message = message;
@@ -29,6 +31,7 @@ namespace TailBlazor.Toast.Configuration
             ShowProgressBar = showProgressBar;
             OnClick = onClick;
             Level = level;
+            IncludeIcons = includeIcons;
         }
 
         public string Heading { get; set; }
@@ -39,5 +42,6 @@ namespace TailBlazor.Toast.Configuration
         public bool ShowProgressBar { get; set; }
         public Action? OnClick { get; set; }
         public ToastLevel Level { get; set; }
+        public bool IncludeIcons { get; set; }
     }
 }
