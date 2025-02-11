@@ -12,9 +12,12 @@
         {
             <div class="p-4 mb-5 bg-white rounded-lg shadow-lg pointer-events-auto">
                 <div class="flex items-start">
-                    <div class="flex-shrink-0">
-                        <TailBlazor.HeroIcons.TailBlazorHeroIcon Class="@(ToastSettings.Class)" Icon="@(ToastSettings.Icon ?? HeroIcons.HeroIcon.Check)" IconStyle="@(ToastSettings.IconStyle ?? HeroIcons.IconStyle.Outline)" />
-                    </div>
+                    @if (ToastSettings.IncludeIcons)
+                    {
+                        <div class="flex-shrink-0">
+                            <TailBlazor.HeroIcons.TailBlazorHeroIcon Class="@(ToastSettings.Class)" Icon="@(ToastSettings.Icon ?? HeroIcons.HeroIcon.Check)" IconStyle="@(ToastSettings.IconStyle ?? HeroIcons.IconStyle.Outline)" />
+                        </div>
+                    }
                     <div class="ml-3 w-0 flex-1 pt-0.5">
                         <p class="text-sm font-medium text-gray-900">@(ToastSettings.Heading)</p>
                         <p class="mt-1 text-sm text-gray-500">@(ToastSettings.Message)</p>

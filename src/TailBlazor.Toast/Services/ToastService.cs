@@ -1,10 +1,26 @@
 using System;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
+using TailBlazor.Toast.Configuration;
 
 namespace TailBlazor.Toast.Services
 {
     public class ToastService : IToastService
     {
+
+        /// <summary>
+        /// Toast configuration options
+        /// </summary>
+        public ToastOptions _options { get; set; }
+
+        /// <summary>
+        /// ToastService parameterized constructor
+        /// </summary>
+        /// <param name="options">Toast configuration options</param>
+        public ToastService(IOptions<ToastOptions> options)
+        {
+            _options = options.Value;
+        }
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
