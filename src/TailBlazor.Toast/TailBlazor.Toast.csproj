@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>TailBlazor.Toast</PackageId>
     <RootNamespace>TailBlazor.Toast</RootNamespace>
-    <Version>1.1.3</Version>
+    <Version>1.1.1</Version>
     <Authors>Taylor Watson</Authors>
     <IsPackage>true</IsPackage>
     <PackageTags>Blazor; TailBlazorcss; TailBlazor css; tailwind; tailwindcss; toast; toasts;</PackageTags>
