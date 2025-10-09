@@ -6,18 +6,20 @@ namespace TailBlazor.Toast
 {
     public partial class TailBlazorToast : IDisposable
     {
-        [CascadingParameter] private TailBlazorToasts ToastsContainer { get; set; }
+        [CascadingParameter] private TailBlazorToasts ToastsContainer { get; set; } = default!;
 
         [Parameter] public Guid ToastId { get; set; }
-        [Parameter] public ToastSettings ToastSettings { get; set; }
+        [Parameter] public ToastSettings ToastSettings { get; set; } = default!;
         [Parameter] public int Timeout { get; set; }
 
-        private CountdownTimer _countdownTimer;
+        private CountdownTimer? _countdownTimer;
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             _countdownTimer = new CountdownTimer(Timeout);
-            _countdownTimer.OnElapsed += () => { Close(); };
+            _countdownTimer.OnElapsed += Close;
             _countdownTimer.Start();
         }
 
@@ -33,6 +35,12 @@ namespace TailBlazor.Toast
 
         public void Dispose()
         {
+            if (_countdownTimer is null)
+            {
+                return;
+            }
+
+            _countdownTimer.OnElapsed = null;
             _countdownTimer.Dispose();
             _countdownTimer = null;
         }

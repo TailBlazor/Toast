@@ -10,11 +10,11 @@ namespace TailBlazor.Toast.Services
         /// <summary>
         /// Toast configuration options
         /// </summary>
-        public ToastOptions _options { get;  }
+        public ToastOptions Options { get; }
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        event Action<ToastLevel, RenderFragment, string, Action> OnShow;
+        event Action<ToastLevel, RenderFragment, string, Action?>? OnShow;
 
         /// <summary>
         /// Shows a toast using the supplied fragment

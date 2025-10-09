@@ -34,9 +34,9 @@ namespace TailBlazor.Toast.Configuration
             IncludeIcons = includeIcons;
         }
 
-        public string Heading { get; set; }
-        public RenderFragment Message { get; set; }
-        public string Class { get; set; }
+        public string? Heading { get; set; }
+        public RenderFragment Message { get; set; } = default!;
+        public string? Class { get; set; }
         public HeroIcons.HeroIcon? Icon { get; set; }
         public HeroIcons.IconStyle? IconStyle { get; set; }
         public bool ShowProgressBar { get; set; }

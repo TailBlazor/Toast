@@ -1,17 +1,17 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 using TailBlazor.Toast.Configuration;
 using TailBlazor.Toast.Services;
 
 namespace TailBlazor.Toast
 {
-    public partial class TailBlazorToasts
+    public partial class TailBlazorToasts : IDisposable
     {
-        [Inject] private IToastService ToastService { get; set; }
-        [Inject] private NavigationManager NavigationManager { get; set; }
+        [Inject] private IToastService ToastService { get; set; } = default!;
+        [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
         [Parameter] public HeroIcons.IconStyle IconStyle { get; set; } = HeroIcons.IconStyle.Outline;
         [Parameter] public string InfoClass { get; set; } = "text-blue-500 w-7 h-7";
@@ -28,12 +28,16 @@ namespace TailBlazor.Toast
         [Parameter] public bool RemoveToastsOnNavigation { get; set; }
 
         protected string PositionClass { get; set; } = "items-start justify-end";
-        internal List<ToastInstance> ToastList { get; set; } = new List<ToastInstance>();
-         ToastOptions Options { get; set; }
+        internal List<ToastInstance> ToastList { get; } = new();
+        private ToastOptions Options { get; set; } = new();
+        private bool _disposed;
+
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             ToastService.OnShow += ShowToast;
-            Options = ToastService._options;
+            Options = ToastService.Options;
             if (RemoveToastsOnNavigation)
             {
                 NavigationManager.LocationChanged += ClearToasts;
@@ -67,12 +71,17 @@ namespace TailBlazor.Toast
             InvokeAsync(() =>
             {
                 var toastInstance = ToastList.SingleOrDefault(x => x.Id == toastId);
+                if (toastInstance is null)
+                {
+                    return;
+                }
+
                 ToastList.Remove(toastInstance);
                 StateHasChanged();
             });
         }
 
-        private void ClearToasts(object sender, LocationChangedEventArgs args)
+        private void ClearToasts(object? sender, LocationChangedEventArgs args)
         {
             InvokeAsync(() =>
             {
@@ -89,7 +98,7 @@ namespace TailBlazor.Toast
                     return new ToastSettings(message, level, Options.IncludeIcons);
                 case ToastLevel.Error:
                     return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Error" : heading, message,
-                        IconStyle, ErrorClass, ErrorIcon, ShowProgressBar, onclick, level,Options.IncludeIcons);
+                        IconStyle, ErrorClass, ErrorIcon, ShowProgressBar, onclick, level, Options.IncludeIcons);
 
                 case ToastLevel.Info:
                     return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Info" : heading, message,
@@ -124,6 +133,23 @@ namespace TailBlazor.Toast
                 StateHasChanged();
             });
 
+        }
+
+        public void Dispose()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            _disposed = true;
+
+            ToastService.OnShow -= ShowToast;
+
+            if (RemoveToastsOnNavigation)
+            {
+                NavigationManager.LocationChanged -= ClearToasts;
+            }
         }
     }
 }

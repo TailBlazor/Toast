@@ -1,16 +1,17 @@
 @using Microsoft.AspNetCore.Components.Web
 @using TailBlazor.Toast.Configuration
 @namespace TailBlazor.Toast
+@attribute [RenderModeInteractiveAuto]
 
 <div class="w-full m-5 pointer-events-auto">
-    <CascadingValue Value=ToastId>
+    <CascadingValue Value="@ToastId">
         @if (ToastSettings.Level == Services.ToastLevel.Custom)
         {
             @(ToastSettings.Message)
         }
         else
         {
-            <div class="p-4 mb-5 bg-white rounded-lg shadow-lg pointer-events-auto">
+            <div class="p-4 mb-5 bg-white rounded-lg shadow-lg pointer-events-auto" @onclick="ToastClick">
                 <div class="flex items-start">
                     @if (ToastSettings.IncludeIcons)
                     {
@@ -23,7 +24,7 @@
                         <p class="mt-1 text-sm text-gray-500">@(ToastSettings.Message)</p>
                     </div>
                     <div class="flex flex-shrink-0 ml-4">
-                        <button @onclick="@Close"
+                        <button @onclick="@Close" @onclick:stopPropagation="true"
                                 class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span class="sr-only">Close</span>
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
