@@ -11,7 +11,7 @@ namespace TailBlazor.Toast.Services
         /// <summary>
         /// Toast configuration options
         /// </summary>
-        public ToastOptions _options { get; set; }
+        public ToastOptions Options { get; }
 
         /// <summary>
         /// ToastService parameterized constructor
@@ -19,7 +19,7 @@ namespace TailBlazor.Toast.Services
         /// <param name="options">Toast configuration options</param>
         public ToastService(IOptions<ToastOptions> options)
         {
-            _options = options.Value;
+            Options = options.Value;
         }
         /// <summary>
         /// A event that will be invoked when showing a toast
@@ -29,13 +29,13 @@ namespace TailBlazor.Toast.Services
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        public event Action<ToastLevel, RenderFragment, string, Action> OnShow;
+        public event Action<ToastLevel, RenderFragment, string, Action?>? OnShow;
 
         /// <summary>
         /// Shows a toast using the fragment
         /// </summary>
         /// <param name="toast">RenderFragment of toast to display</param>
-        public void ShowToast(RenderFragment toast) => OnShow?.Invoke(ToastLevel.Custom, toast, String.Empty, null);
+        public void ShowToast(RenderFragment toast) => OnShow?.Invoke(ToastLevel.Custom, toast, string.Empty, null);
 
         /// <summary>
         /// Shows a toast using the supplied settings

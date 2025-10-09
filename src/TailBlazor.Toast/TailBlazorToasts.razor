@@ -1,10 +1,12 @@
+@using Microsoft.AspNetCore.Components.Web
 @namespace TailBlazor.Toast
+@attribute [RenderModeInteractiveAuto]
 
 @if (ToastList.Any())
 {
     <div class="fixed inset-0 z-50 flex @(PositionClass) py-2 px-12 pointer-events-none">
         <div class="max-w-sm w-full">
-            <CascadingValue Value=this>
+            <CascadingValue Value="@this">
                 @foreach (var toast in ToastList.OrderBy(x => x.TimeStamp))
                 {
                     <TailBlazorToast @key="toast" ToastSettings="@toast.ToastSettings" ToastId="toast.Id" Timeout="Timeout" />

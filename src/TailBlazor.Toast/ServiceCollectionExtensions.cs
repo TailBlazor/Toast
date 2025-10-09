@@ -7,13 +7,17 @@ namespace TailBlazor.Toast
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddTailBlazorToast(this IServiceCollection services,  Action<ToastOptions>? configureOptions = null )
+        public static IServiceCollection AddTailBlazorToast(this IServiceCollection services, Action<ToastOptions>? configureOptions = null)
         {
-            services.Configure<ToastOptions>(options =>
-            {
-                options.IncludeIcons = true;
-                configureOptions?.Invoke(options);
-            });
+            ArgumentNullException.ThrowIfNull(services);
+
+            services.AddOptions<ToastOptions>()
+                .Configure(options =>
+                {
+                    options.IncludeIcons = true;
+                    configureOptions?.Invoke(options);
+                });
+
             return services.AddScoped<IToastService, ToastService>();
         }
     }

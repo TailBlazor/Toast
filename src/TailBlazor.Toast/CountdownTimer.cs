@@ -5,13 +5,13 @@ namespace TailBlazor.Toast
 {
     internal class CountdownTimer : IDisposable
     {
-        private Timer _timer;
-        private int _timeout;
-        private int _countdownTotal;
+        private Timer? _timer;
+        private readonly int _timeout;
+        private readonly int _countdownTotal;
         private int _percentComplete;
 
-        internal Action<int> OnTick;
-        internal Action OnElapsed;
+        internal Action<int>? OnTick;
+        internal Action? OnElapsed;
 
         internal CountdownTimer(int timeout)
         {
@@ -23,11 +23,12 @@ namespace TailBlazor.Toast
 
         internal void Start()
         {
-            _timer.Start();
+            _timer?.Start();
         }
 
         private void SetupTimer()
         {
+            _timer?.Dispose();
             _timer = new Timer(_timeout);
             _timer.Elapsed += HandleTick;
             _timer.AutoReset = false;
@@ -51,6 +52,11 @@ namespace TailBlazor.Toast
 
         public void Dispose()
         {
+            if (_timer is null)
+            {
+                return;
+            }
+
             _timer.Dispose();
             _timer = null;
         }

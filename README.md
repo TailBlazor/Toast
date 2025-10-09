@@ -2,6 +2,8 @@
 
 Blazor toast notifications shell using Tailwindcss v2.0+
 
+> **Requires .NET 9.0 or later.**
+
 Thank you to Chris Sanity for the base functionality through Blazored.Toasts. This is basically a fork of his work.
 
 This version uses Tailwindcss instead of bootstrap. There are a few base styles included, however, With TailBlazor being so incredibly low level there is the option to load entire render fragments in instead to give unlimited customization to toasts
@@ -50,7 +52,17 @@ Add this to the top of your MainLayout.razor component.
 
 `<TailBlazorToasts />`
 
-### 4. Using basic components
+### 4. Enable interactive rendering
+
+TailBlazor.Toast is ready for Blazor's interactive *Auto* render mode. When the component is rendered it automatically lights up on the client regardless of whether the host app is prerendering for WebAssembly, Server, or switching between them at runtime. For standalone pages or layouts you can optionally opt into Auto mode explicitly by adding the following directive:
+
+```
+@rendermode InteractiveAuto
+```
+
+The included sample app shows this directive in `App.razor` for reference.
+
+### 5. Using basic components
 
 Edit the TailBlazorToasts component in mainlayout with your base settings
 
@@ -77,7 +89,7 @@ Edit the TailBlazorToasts component in mainlayout with your base settings
 ```
 
 
-#### 5. Create your custom toast component
+#### 6. Create your custom toast component
 
 You can create the template that you'll use for some or all of your toasts using tailwind.
 
@@ -112,7 +124,7 @@ Here is a basic example. Create a folder named `Toasts` and create a component c
 </div>
 ```
 
-#### 5. Use your toast component
+#### 6. Use your toast component
 
 Go to Index and inject your toast service
 
